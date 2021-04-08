@@ -1,14 +1,14 @@
 import React, { useMemo, useState } from "react";
 
 import {
-  Theme,
-  withStyles,
-  WithStyles,
-  Modal,
   Backdrop,
   Fade,
   IconButton,
-  Typography
+  Modal,
+  Theme,
+  Typography,
+  withStyles,
+  WithStyles
 } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 
@@ -57,8 +57,9 @@ export const styles = (theme: Theme) => ({
     flex: 0.7,
     background: "#f2f2f2",
     padding: "10px 10px 10px 10px",
-    maxHeight: (props: any) => props.schema && props.schema.height ? props.schema.height - 30 : 400,
-    overflow: 'scroll'
+    maxHeight: (props: any) =>
+      props.schema && props.schema.height ? props.schema.height - 30 : 400,
+    overflow: "scroll"
   },
   grow: {
     flexGrow: 1
@@ -67,50 +68,59 @@ export const styles = (theme: Theme) => ({
     marginBottom: 10
   },
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
   paper: {
-    maxHeight: '90%',
-    overflow: 'hidden',
-    width: '60%',
+    maxHeight: "90%",
+    overflow: "hidden",
+    width: "60%",
     backgroundColor: "#f2f2f2",
     "&:focus": {
       outline: "none"
     }
   },
   dialogHeader: {
-    background: '#e5e5e5',
-    paddingLeft: '10px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    background: "#e5e5e5",
+    paddingLeft: "10px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   dialogContent: {
     padding: 10,
-    overflow: 'scroll',
+    overflow: "scroll",
     maxHeight: 300
   }
 });
 
 export interface Props
-  extends WithEditorFieldProps<WithStyles<typeof styles>> {
-}
+  extends WithEditorFieldProps<WithStyles<typeof styles>> {}
 
 const EditorComponentTreeField: React.SFC<Props> = (props: Props) => {
   const { schema, value, onChange, classes, pointer } = props;
 
   const spec: TreeSpec = TreeSpec.fromSchema(schema);
-  const populatedValue: ImmutableTreeData = new ImmutableTreeData(spec, value, '');
-  const data: ImmutableTreeData = new ImmutableTreeData(spec, populatedValue.toJSON(), pointer);
+  const populatedValue: ImmutableTreeData = new ImmutableTreeData(
+    spec,
+    value,
+    ""
+  );
+  const data: ImmutableTreeData = new ImmutableTreeData(
+    spec,
+    populatedValue.toJSON(),
+    pointer
+  );
 
-  const [selectedNodePointer, setSelectedNodePointer] = useState<string | undefined>(undefined);
+  const [selectedNodePointer, setSelectedNodePointer] = useState<
+    string | undefined
+  >(undefined);
 
   const [selectedComponent, selectedComponentSpec] = useMemo((): [
     ComponentTreeNode | undefined,
     ComponentSpec | undefined
-    ] => {
+  ] => {
     const selectedNode = data.getNode(selectedNodePointer);
     if (!selectedNode || selectedNode.nodeType !== "component") {
       return [undefined, undefined];
@@ -126,7 +136,12 @@ const EditorComponentTreeField: React.SFC<Props> = (props: Props) => {
     return [componentNode, componentSpec];
   }, [selectedNodePointer, data]);
 
-  const renderModal = !!(selectedNodePointer && selectedComponent && selectedComponent.spec && Object.keys(selectedComponent.spec.properties || {}).length);
+  const renderModal = !!(
+    selectedNodePointer &&
+    selectedComponent &&
+    selectedComponent.spec &&
+    Object.keys(selectedComponent.spec.properties || {}).length
+  );
 
   const handleUpdate = (newData: ImmutableTreeData) => {
     if (onChange) {
@@ -207,19 +222,28 @@ const EditorComponentTreeField: React.SFC<Props> = (props: Props) => {
               className={clsx(classes.modal)}
               open={renderModal}
               onClose={() => setSelectedNodePointer(undefined)}
-              closeAfterTransition
+              closeAfterTransition={true}
               BackdropComponent={Backdrop}
               BackdropProps={{
-                timeout: 500,
+                timeout: 500
               }}
             >
               <Fade in={renderModal}>
                 <div className={clsx(classes.paper)}>
                   <div className={clsx(classes.dialogHeader)}>
-                    <Typography variant="body1" className={clsx(classes.dialogHeader)}>
-                      {selectedComponent && selectedComponent.spec ? selectedComponent.spec.title || selectedComponent.spec.name : ''}
+                    <Typography
+                      variant="body1"
+                      className={clsx(classes.dialogHeader)}
+                    >
+                      {selectedComponent && selectedComponent.spec
+                        ? selectedComponent.spec.title ||
+                          selectedComponent.spec.name
+                        : ""}
                     </Typography>
-                    <IconButton aria-label="close" onClick={() => setSelectedNodePointer(undefined)}>
+                    <IconButton
+                      aria-label="close"
+                      onClick={() => setSelectedNodePointer(undefined)}
+                    >
                       <Close />
                     </IconButton>
                   </div>

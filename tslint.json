@@ -10,6 +10,9 @@
         /* tslint-immutable rules */
         // Recommended built-in rules
         "no-var-keyword": true,
+        "@typescript-eslint/no-unused-vars":"off",
+        "no-mixed-operators": false,
+        "array-callback-return": false,
         "typedef": [true, "call-signature"],
         "max-classes-per-file": false,
         "jsx-no-lambda": false

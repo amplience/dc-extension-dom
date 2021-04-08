@@ -53,7 +53,8 @@ export class ImmutableTreeData {
         properties: data.properties,
         spec: componentSpec,
         slots: Object.keys(slotSpecs).map(slotName => {
-          const items: ComponentData[] = data.slots && data.slots[slotName] || [];
+          const items: ComponentData[] =
+            (data.slots && data.slots[slotName]) || [];
           return convertSlot(
             slotName,
             slotSpecs[slotName],

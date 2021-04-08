@@ -1,13 +1,11 @@
 import {
+  Collapse,
   IconButton,
   Typography,
   WithStyles,
-  withStyles,
-  Collapse
+  withStyles
 } from "@material-ui/core";
-import {
-  KeyboardArrowDown, KeyboardArrowUp
-} from "@material-ui/icons";
+import { KeyboardArrowDown, KeyboardArrowUp } from "@material-ui/icons";
 import clsx from "clsx";
 import React, { PropsWithChildren, useMemo } from "react";
 
@@ -76,7 +74,6 @@ export interface Props extends PropsWithChildren<WithStyles<typeof styles>> {
   node: ComponentTreeNode;
 }
 
-
 const walkJson = (input: any, visitor: (x: any) => void) => {
   if (!input) {
     return;
@@ -97,25 +94,27 @@ const walkJson = (input: any, visitor: (x: any) => void) => {
 
 export const Component: React.SFC<Props> = (props: Props) => {
   const { classes, spec, node, ...other } = props;
-  const [expandedState, setExpandedState] = React.useState(
-    false
-  );
+  const [expandedState, setExpandedState] = React.useState(false);
   const slots = spec.slots || {};
   const text = useMemo(() => {
-    return node.spec && node.spec.preview && pointerValue(node.properties, node.spec.preview.text);
+    return (
+      node.spec &&
+      node.spec.preview &&
+      pointerValue(node.properties, node.spec.preview.text)
+    );
   }, [node]);
   const imagesArray = useMemo(() => {
-    let images: any[] = [];
+    const images: any[] = [];
     if (node.spec && node.spec.preview && node.spec.preview.image) {
       const value = pointerValue(node.properties, node.spec.preview.image);
-      value && images.push(value)
+      value && images.push(value);
     } else {
       walkJson(node.properties, value => {
         if (
           value &&
           value._meta &&
           value._meta.schema ===
-          "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link"
+            "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link"
         ) {
           images.push(value);
         }
@@ -124,7 +123,7 @@ export const Component: React.SFC<Props> = (props: Props) => {
     return images;
   }, [node]);
 
-  const needPreview = text || imagesArray && imagesArray.length;
+  const needPreview = text || (imagesArray && imagesArray.length);
 
   const {
     selectedNode,
@@ -165,22 +164,27 @@ export const Component: React.SFC<Props> = (props: Props) => {
           {spec.title || spec.name}
         </Typography>
         <div className={classes.headerActions}>
-          {needPreview ? (<IconButton
-            className={classes.deleteButton}
-            onClick={(e) => {
-              e.stopPropagation();
-              setExpandedState(!expandedState)
-            }}
-            size="small"
-          >
-            {!expandedState ? (<KeyboardArrowDown width={'24px'} height={'24px'} />) : (
-              <KeyboardArrowUp width={'24px'} height={'24px'} />)}
-          </IconButton>) : null}
+          {needPreview ? (
+            <IconButton
+              className={classes.deleteButton}
+              onClick={e => {
+                e.stopPropagation();
+                setExpandedState(!expandedState);
+              }}
+              size="small"
+            >
+              {!expandedState ? (
+                <KeyboardArrowDown width={"24px"} height={"24px"} />
+              ) : (
+                <KeyboardArrowUp width={"24px"} height={"24px"} />
+              )}
+            </IconButton>
+          ) : null}
           <IconButton
             className={classes.deleteButton}
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
-              handleDelete()
+              handleDelete();
             }}
             size="small"
           >
@@ -188,10 +192,7 @@ export const Component: React.SFC<Props> = (props: Props) => {
           </IconButton>
         </div>
       </div>
-      <Collapse
-        unmountOnExit={true}
-        in={expandedState}
-      >
+      <Collapse unmountOnExit={true} in={expandedState}>
         <div className={classes.preview}>
           <ComponentPreview text={text} images={imagesArray} />
         </div>

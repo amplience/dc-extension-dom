@@ -1,17 +1,24 @@
-import { ListItem, ListItemIcon, ListItemText, Link, WithStyles, withStyles } from "@material-ui/core";
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import {
+  Link,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  WithStyles,
+  withStyles
+} from "@material-ui/core";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import clsx from "clsx";
 import React from "react";
 import { useDrag } from "react-dnd";
 import { ComponentSpec } from "../../model";
 import ComponentIcon from "../ComponentIcon";
-import clsx from "clsx";
 
 const styles = {
   root: {
-    transform: 'translate3d(0, 0, 0)'
+    transform: "translate3d(0, 0, 0)"
   },
   info: {
-    verticalAlign: 'middle'
+    verticalAlign: "middle"
   }
 };
 
@@ -39,7 +46,13 @@ const ComponentListItem: React.SFC<Props> = props => {
   });
 
   return (
-    <ListItem disableRipple component={'li'} className={clsx(classes.root)} button={true} ref={drag}>
+    <ListItem
+      disableRipple={true}
+      component={"li"}
+      className={clsx(classes.root)}
+      button={true}
+      ref={drag}
+    >
       <ListItemIcon>
         <ComponentIcon name={component.name} />
       </ListItemIcon>
@@ -49,13 +62,9 @@ const ComponentListItem: React.SFC<Props> = props => {
       />
       {component.infoLink ? (
         <Link href={component.infoLink} rel="noopener" target="_blank">
-          <InfoOutlinedIcon
-            color="primary"
-            className={clsx(classes.info)}
-          />
+          <InfoOutlinedIcon color="primary" className={clsx(classes.info)} />
         </Link>
       ) : null}
-
     </ListItem>
   );
 };

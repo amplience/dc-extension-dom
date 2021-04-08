@@ -5,9 +5,7 @@ import {
   getDefaultRegistry,
   withEditor
 } from "unofficial-dynamic-content-ui";
-import {
-  COMPONENTS,
-} from "../../fixtures";
+import { COMPONENTS } from "../../fixtures";
 import EditorComponentTreeField from "./EditorComponentTreeField";
 
 const schema = {

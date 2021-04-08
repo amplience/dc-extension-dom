@@ -56,12 +56,12 @@ export const withChildrenPreview: SlotTreeNode = {
       nodePointer: "/children/0",
       nodeType: "component",
       properties: {
-        text: 'Hello',
-        variant: 'h1'
+        text: "Hello",
+        variant: "h1"
       },
       spec: {
         preview: {
-          text: '/text'
+          text: "/text"
         }
       } as any,
       slots: []
@@ -87,42 +87,60 @@ export const withChildrenImagePreview: SlotTreeNode = {
           endpoint: "csdemo",
           id: "ec083469-ca5e-4bef-ab26-f7dd80fe6cc5",
           name: "all the space look",
-          _meta: { schema: "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link" }
+          _meta: {
+            schema:
+              "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link"
+          }
         },
         image1: {
           defaultHost: "cdn.media.amplience.net",
           endpoint: "csdemo",
           id: "ec083469-ca5e-4bef-ab26-f7dd80fe6cc5",
           name: "all the space look",
-          _meta: { schema: "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link" }
+          _meta: {
+            schema:
+              "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link"
+          }
         },
         image2: {
           defaultHost: "cdn.media.amplience.net",
           endpoint: "csdemo",
           id: "ec083469-ca5e-4bef-ab26-f7dd80fe6cc5",
           name: "all the space look",
-          _meta: { schema: "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link" }
+          _meta: {
+            schema:
+              "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link"
+          }
         },
         image3: {
           defaultHost: "cdn.media.amplience.net",
           endpoint: "csdemo",
           id: "ec083469-ca5e-4bef-ab26-f7dd80fe6cc5",
           name: "all the space look",
-          _meta: { schema: "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link" }
+          _meta: {
+            schema:
+              "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link"
+          }
         },
         image4: {
           defaultHost: "cdn.media.amplience.net",
           endpoint: "csdemo",
           id: "ec083469-ca5e-4bef-ab26-f7dd80fe6cc5",
           name: "all the space look",
-          _meta: { schema: "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link" }
+          _meta: {
+            schema:
+              "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link"
+          }
         },
         image5: {
           defaultHost: "cdn.media.amplience.net",
           endpoint: "csdemo",
           id: "ec083469-ca5e-4bef-ab26-f7dd80fe6cc5",
           name: "all the space look",
-          _meta: { schema: "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link" }
+          _meta: {
+            schema:
+              "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link"
+          }
         }
       },
       spec: {} as any,

@@ -26,14 +26,10 @@ export function WithTreeSpecExtended(
           value={
             props.editorValue || {
               selectedNode: "",
-              setSelectedNode: () => {
-              },
-              insertComponent: () => {
-              },
-              deleteComponent: () => {
-              },
-              moveComponent: () => {
-              }
+              setSelectedNode: () => {},
+              insertComponent: () => {},
+              deleteComponent: () => {},
+              moveComponent: () => {}
             }
           }
         >

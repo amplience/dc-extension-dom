@@ -1,4 +1,11 @@
-import { Theme, WithStyles, withStyles, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import {
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Theme,
+  WithStyles,
+  withStyles
+} from "@material-ui/core";
 import clsx from "clsx";
 import React, { PropsWithChildren } from "react";
 
@@ -11,8 +18,11 @@ const styles = (theme: Theme) => ({
     listStyle: "none",
     outline: 0,
     WebkitTapHighlightColor: "transparent",
-    color: (props: any) => props.type === 'component' ? theme.palette.text.primary : theme.palette.text.secondary,
-    display: 'block'
+    color: (props: any) =>
+      props.type === "component"
+        ? theme.palette.text.primary
+        : theme.palette.text.secondary,
+    display: "block"
   },
   /* Pseudo-class applied to the root element when expanded. */
   expanded: {},
@@ -106,17 +116,19 @@ const TreeItem: React.SFC<TreeItemProps> = (props: TreeItemProps) => {
         [classes.expanded]: expanded,
         [classes.selected]: selected
       })}
-      disableRipple
-      component={'li'}
+      disableRipple={true}
+      component={"li"}
       button={true}
       role="treeitem"
       aria-expanded={expandable ? expanded : undefined}
       {...other}
     >
       <div className={classes.content} ref={contentRef} onClick={handleClick}>
-
         {expandIcon ? (
-          <ListItemIcon onClick={handleClickIcon} className={classes.iconContainer}>
+          <ListItemIcon
+            onClick={handleClickIcon}
+            className={classes.iconContainer}
+          >
             {expandIcon}
           </ListItemIcon>
         ) : (
@@ -125,8 +137,7 @@ const TreeItem: React.SFC<TreeItemProps> = (props: TreeItemProps) => {
         {icon}
         <ListItemText
           primary={label}
-          onClick={type === 'component' ? handleClickIcon : () => {
-          }}
+          onClick={type === "component" ? handleClickIcon : () => {}}
         />
       </div>
       {children && (

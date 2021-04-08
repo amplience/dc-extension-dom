@@ -40,7 +40,9 @@ export default class App extends React.Component<{}, AppState> {
 
   public async handleConnect(): Promise<void> {
     const sdk: SDK = await init();
-    const { params: { installation, instance } }: any = sdk;
+    const {
+      params: { installation, instance }
+    }: any = sdk;
     const height = installation.height || instance.height;
 
     sdk.frame.startAutoResizer();

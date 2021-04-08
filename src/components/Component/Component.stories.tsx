@@ -4,7 +4,11 @@ import Component from "./Component";
 import { storiesOf } from "@storybook/react";
 import { withTheme } from "unofficial-dynamic-content-ui";
 import { spec, specEmpty } from "../../fixtures";
-import { withChildren, withChildrenPreview, withChildrenImagePreview } from "../Slot/Slot.stories";
+import {
+  withChildren,
+  withChildrenImagePreview,
+  withChildrenPreview
+} from "../Slot/Slot.stories";
 import { styles } from "../Toolbox/Toolbox.stories";
 import { WithTreeSpecExtended } from "../WithTreeSpec/WithTreeSpecExtended";
 
@@ -26,20 +30,24 @@ storiesOf("Slot Component", module)
         </div>
       </WithTreeSpecExtended>
     );
-  }).add("With Preview", () => {
-  const specValue = getSpec(withChildrenPreview.children[0].name);
-  return withTheme(
-    <WithTreeSpecExtended value={specEmpty}>
-      <div style={styles.root}>
-        <div style={styles.toolboxPane}>
-          {specValue && (
-            <Component spec={specValue} node={withChildrenPreview.children[0]} />
-          )}
+  })
+  .add("With Preview", () => {
+    const specValue = getSpec(withChildrenPreview.children[0].name);
+    return withTheme(
+      <WithTreeSpecExtended value={specEmpty}>
+        <div style={styles.root}>
+          <div style={styles.toolboxPane}>
+            {specValue && (
+              <Component
+                spec={specValue}
+                node={withChildrenPreview.children[0]}
+              />
+            )}
+          </div>
         </div>
-      </div>
-    </WithTreeSpecExtended>
-  );
-})
+      </WithTreeSpecExtended>
+    );
+  })
   .add("With Image Preview", () => {
     const specValue = getSpec(withChildrenImagePreview.children[0].name);
     return withTheme(
@@ -47,7 +55,10 @@ storiesOf("Slot Component", module)
         <div style={styles.root}>
           <div style={styles.toolboxPane}>
             {specValue && (
-              <Component spec={specValue} node={withChildrenImagePreview.children[0]} />
+              <Component
+                spec={specValue}
+                node={withChildrenImagePreview.children[0]}
+              />
             )}
           </div>
         </div>

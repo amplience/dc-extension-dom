@@ -1,4 +1,4 @@
-import { WithStyles, withStyles, List } from "@material-ui/core";
+import { List, WithStyles, withStyles } from "@material-ui/core";
 import clsx from "clsx";
 import React, { PropsWithChildren } from "react";
 import TreeViewContext from "./TreeViewContext";
@@ -6,8 +6,8 @@ import TreeViewContext from "./TreeViewContext";
 export const styles = {
   root: {
     listStyle: "none",
-    maxHeight: (props: any) => props.height ? props.height - 58 : 400,
-    overflow: 'scroll'
+    maxHeight: (props: any) => (props.height ? props.height - 58 : 400),
+    overflow: "scroll"
   }
 };
 
@@ -61,7 +61,14 @@ export const TreeView: React.SFC<Props> = (props: Props) => {
         select
       }}
     >
-      <List role={'tree'} className={clsx(classes.root)} component="ul" disablePadding={true} dense={true} {...other}>
+      <List
+        role={"tree"}
+        className={clsx(classes.root)}
+        component="ul"
+        disablePadding={true}
+        dense={true}
+        {...other}
+      >
         {children}
       </List>
     </TreeViewContext.Provider>

@@ -16,15 +16,14 @@ export const styles = {
   }
 };
 
-storiesOf("Toolbox", module)
-  .add("Default", () =>
-    withTheme(
-      <WithTreeSpecExtended value={spec}>
-        <div style={styles.root}>
-          <div style={styles.toolboxPane}>
-            <Toolbox data={data} />
-          </div>
+storiesOf("Toolbox", module).add("Default", () =>
+  withTheme(
+    <WithTreeSpecExtended value={spec}>
+      <div style={styles.root}>
+        <div style={styles.toolboxPane}>
+          <Toolbox data={data} />
         </div>
-      </WithTreeSpecExtended>
-    )
-  );
+      </div>
+    </WithTreeSpecExtended>
+  )
+);

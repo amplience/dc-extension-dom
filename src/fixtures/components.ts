@@ -30,7 +30,7 @@ export const TYPOGRAPHY_SPEC = {
   icon: "text_format",
   description: "",
   preview: {
-    text: '/text'
+    text: "/text"
   },
   properties: {
     variant: {
