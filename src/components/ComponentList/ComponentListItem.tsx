@@ -15,21 +15,26 @@ import ComponentIcon from "../ComponentIcon";
 
 const styles = {
   root: {
-    transform: "translate3d(0, 0, 0)"
+    transform: "translate3d(0, 0, 0)",
+    paddingLeft: (props: any) => (props.small ? 5 : 16)
   },
   info: {
     verticalAlign: "middle"
+  },
+  iconRoot: {
+    minWidth: 40
   }
 };
 
 interface Props extends WithStyles {
   component: ComponentSpec;
   className?: string;
+  small?: boolean;
   style?: React.CSSProperties;
 }
 
 const ComponentListItem: React.SFC<Props> = props => {
-  const { component, classes, ...other } = props;
+  const { component, classes, small, ...other } = props;
 
   const [{ dragging }, drag, preview] = useDrag({
     item: {
@@ -52,9 +57,10 @@ const ComponentListItem: React.SFC<Props> = props => {
       className={clsx(classes.root)}
       button={true}
       ref={drag}
+      title={component.title}
     >
-      <ListItemIcon>
-        <ComponentIcon name={component.name} />
+      <ListItemIcon className={classes.iconRoot}>
+        <ComponentIcon small={small} name={component.name} />
       </ListItemIcon>
       <ListItemText
         primary={component.title}

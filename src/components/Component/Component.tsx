@@ -107,7 +107,9 @@ export const Component: React.SFC<Props> = (props: Props) => {
     const images: any[] = [];
     if (node.spec && node.spec.preview && node.spec.preview.image) {
       const value = pointerValue(node.properties, node.spec.preview.image);
-      value && images.push(value);
+      if (value) {
+        images.push(value);
+      }
     } else {
       walkJson(node.properties, value => {
         if (

@@ -34,8 +34,9 @@ const ComponentPreview: React.SFC<Props> = props => {
     <div className={clsx(classes.root)}>
       {images && images.length ? (
         <div className={clsx(classes.imageContainer)}>
-          {images.map((imageObject: any) => (
+          {images.map((imageObject: any, ind: number) => (
             <img
+              key={ind}
               className={classes.image}
               alt="preview"
               src={`//${imageObject.defaultHost}/i/${imageObject.endpoint}/${imageObject.name}`}

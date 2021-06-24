@@ -1,4 +1,11 @@
-import { List, withStyles, WithStyles } from "@material-ui/core";
+import {
+  List,
+  ListItemIcon,
+  ListItemText,
+  withStyles,
+  WithStyles
+} from "@material-ui/core";
+import { KeyboardArrowDown, KeyboardArrowRight } from "@material-ui/icons";
 import clsx from "clsx";
 import React from "react";
 import TreeItem from "../TreeItem/TreeItem";
@@ -8,8 +15,8 @@ import ComponentListItem from "./ComponentListItem";
 
 const styles = {
   root: {
-    maxHeight: (props: any) => (props.height ? props.height - 58 : 400),
-    overflow: "scroll"
+    height: (props: any) => props.height,
+    overflow: "hidden scroll"
   }
 };
 
@@ -34,7 +41,11 @@ const renderGroup = (treeData: any, treeSpec: any, key: string) => {
   return key !== "root" ? (
     <TreeItem key={key} nodeId={key} label={key} type={"component"}>
       {treeData[key].map((ind: any) => (
-        <ComponentListItem key={treeSpec[ind].name} component={treeSpec[ind]} />
+        <ComponentListItem
+          small={true}
+          key={treeSpec[ind].name}
+          component={treeSpec[ind]}
+        />
       ))}
     </TreeItem>
   ) : null;
@@ -62,8 +73,8 @@ const ComponentList: React.SFC<Props> = props => {
     >
       <TreeView
         defaultExpandedNodes={[]}
-        onSelectNode={() => {}}
-        selectedNodeId={() => {}}
+        onSelectNode={() => ""}
+        selectedNodeId={""}
         height={height}
       >
         {Object.keys(treeData).map(key =>

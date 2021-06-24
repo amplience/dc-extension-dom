@@ -5,8 +5,9 @@ import { useDrop } from "react-dnd";
 
 const styles = () => ({
   root: {
-    width: "100%",
-    height: 8
+    height: 12,
+    border: "1px dashed #e5e5e5",
+    margin: "5px 0"
   },
   hovering: {
     background: "#039be5"

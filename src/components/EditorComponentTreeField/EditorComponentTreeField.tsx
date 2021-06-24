@@ -1,10 +1,13 @@
 import React, { useMemo, useState } from "react";
 
 import {
+  AppBar,
   Backdrop,
   Fade,
   IconButton,
   Modal,
+  Tab,
+  Tabs,
   Theme,
   Typography,
   withStyles,
@@ -20,6 +23,7 @@ import {
 
 import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
+import Navigator from "../Navigator";
 import Toolbox from "../Toolbox";
 
 import { Slot } from "..";
@@ -38,7 +42,9 @@ export const styles = (theme: Theme) => ({
   root: {
     display: "flex",
     border: "1px solid rgba(157,162,162,.3)",
-    "border-radius": 5
+    "border-radius": 5,
+    height: (props: any) => props.schema && props.schema.height,
+    overflow: "hidden"
   },
   toolboxPane: {
     flex: 0.3,
@@ -57,8 +63,7 @@ export const styles = (theme: Theme) => ({
     flex: 0.7,
     background: "#f2f2f2",
     padding: "10px 10px 10px 10px",
-    maxHeight: (props: any) =>
-      props.schema && props.schema.height ? props.schema.height - 30 : 400,
+    height: (props: any) => (props.schema && props.schema.height - 68) || 532,
     overflow: "scroll"
   },
   grow: {
@@ -66,6 +71,10 @@ export const styles = (theme: Theme) => ({
   },
   slotWrap: {
     marginBottom: 10
+  },
+  tabs: {
+    width: "100%",
+    borderBottom: "1px solid #f2f2f2"
   },
   modal: {
     display: "flex",
@@ -100,7 +109,10 @@ export interface Props
 
 const EditorComponentTreeField: React.SFC<Props> = (props: Props) => {
   const { schema, value, onChange, classes, pointer } = props;
-
+  const [tab, setTab] = useState(0);
+  const handleChange = (event: any, newValue: number) => {
+    setTab(newValue);
+  };
   const spec: TreeSpec = TreeSpec.fromSchema(schema);
   const populatedValue: ImmutableTreeData = new ImmutableTreeData(
     spec,
@@ -199,23 +211,42 @@ const EditorComponentTreeField: React.SFC<Props> = (props: Props) => {
           }}
         >
           <div className={clsx(classes.root)}>
-            <div className={clsx(classes.toolboxPane)}>
-              <Toolbox height={schema.height} data={data} />
+            <Toolbox height={schema.height} data={data} />
+            <div className={clsx(classes.tabs)}>
+              <Tabs
+                value={tab}
+                indicatorColor="primary"
+                textColor="primary"
+                onChange={handleChange}
+                className={classes.tabs}
+                variant="standard"
+              >
+                <Tab label="DOM" />
+                <Tab label="Navigator" />
+              </Tabs>
+              {tab === 0 && (
+                <div className={clsx(classes.canvasPane)}>
+                  {data.rootSlots.map((rootSlot, ind) => {
+                    return (
+                      <div key={ind} className={clsx(classes.slotWrap)}>
+                        <Slot
+                          key={rootSlot.name}
+                          node={rootSlot}
+                          spec={spec.slots[rootSlot.name]}
+                          showTitle={data.rootSlots.length > 1}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              {tab === 1 && data && (
+                <div className={clsx(classes.canvasPane)}>
+                  <Navigator data={data} />
+                </div>
+              )}
             </div>
-            <div className={clsx(classes.canvasPane)}>
-              {data.rootSlots.map(rootSlot => {
-                return (
-                  <div className={clsx(classes.slotWrap)}>
-                    <Slot
-                      key={rootSlot.name}
-                      node={rootSlot}
-                      spec={spec.slots[rootSlot.name]}
-                      showTitle={data.rootSlots.length > 1}
-                    />
-                  </div>
-                );
-              })}
-            </div>
+
             <Modal
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"
