@@ -33,9 +33,6 @@ const styles = {
     overflow: "hidden",
     textOverflow: "ellipsis",
     "white-space": "nowrap"
-    // visibility: (props: any) => props.open ? 'visible' : 'hidden',
-    // display: (props: any) => props.open ? 'block' : 'none',
-    // "white-space": "break-spaces"
   }
 };
 

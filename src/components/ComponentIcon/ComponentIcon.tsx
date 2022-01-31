@@ -3,7 +3,7 @@ import Icon from "@material-ui/core/Icon";
 import SettingsIcon from "@material-ui/icons/Settings";
 import React from "react";
 import { useTreeSpec } from "../WithTreeSpec/WithTreeSpec";
-const isUrl = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+const isUrl = /^(http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
 
 export const styles = {
   root: {
