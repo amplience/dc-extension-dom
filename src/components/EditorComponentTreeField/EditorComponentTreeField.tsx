@@ -1,11 +1,12 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import {
-  AppBar,
   Backdrop,
+  DialogContent,
   Fade,
   IconButton,
   Modal,
+  Paper,
   Tab,
   Tabs,
   Theme,
@@ -64,7 +65,7 @@ export const styles = (theme: Theme) => ({
     background: "#f2f2f2",
     padding: "10px 10px 10px 10px",
     height: (props: any) => (props.schema && props.schema.height - 68) || 532,
-    overflow: "scroll"
+    overflow: "hidden auto"
   },
   grow: {
     flexGrow: 1
@@ -83,8 +84,8 @@ export const styles = (theme: Theme) => ({
   },
   paper: {
     maxHeight: "90%",
-    overflow: "hidden",
-    width: "60%",
+    overflow: "auto",
+    width: "90%",
     backgroundColor: "#f2f2f2",
     "&:focus": {
       outline: "none"
@@ -99,7 +100,7 @@ export const styles = (theme: Theme) => ({
   },
   dialogContent: {
     padding: 10,
-    overflow: "scroll",
+    overflow: "auto",
     maxHeight: 300
   }
 });
@@ -278,7 +279,7 @@ const EditorComponentTreeField: React.SFC<Props> = (props: Props) => {
                       <Close />
                     </IconButton>
                   </div>
-                  <div className={clsx(classes.dialogContent)}>
+                  <DialogContent className={clsx(classes.dialogContent)}>
                     {selectedComponent && selectedComponentSpec ? (
                       <EditorField
                         {...props}
@@ -293,7 +294,7 @@ const EditorComponentTreeField: React.SFC<Props> = (props: Props) => {
                     ) : (
                       <div />
                     )}
-                  </div>
+                  </DialogContent>
                 </div>
               </Fade>
             </Modal>
