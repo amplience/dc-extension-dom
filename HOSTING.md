@@ -18,17 +18,19 @@ You will then need to clone the repository onto your computer using Git. You can
 
 To build the extension, you will first need to install the project with `npm install` (`npm i`). Once installed, you can then build it with `npm run build`.
 
-If you want to test the extension in storybook, run storybook with `npmrun storybook` (`npm run start` to run locally).
+If you want to test the extension in storybook, run storybook with `npm run storybook`.
+
+If you want to run the extension itself locally, this can be done with `npm run start` .
 
 ## Publishing GitHub Pages on your fork
 
 After you've built your version of the DOM Editor extension, you can publish it with the following command:
 
-`npx gh-pages -d packages/extension/build`
+`npx gh-pages -d build`
 
 Note: if you're on a remote, you'll want to publish with this command:
 
-`npx gh-pages -d packages/extension/build -o remote-name`
+`npx gh-pages -d build -o remote-name`
 
 This will create or update the `gh-pages` branch on your repository for you. You may be asked for GitHub authentication, depending on how you configured Git in the first place.
 
