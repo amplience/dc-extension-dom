@@ -1,5 +1,5 @@
 {
-  "name": "dc-extension-dom",
+  "name": "dc-extension-dom-editor",
   "version": "0.1.0",
   "homepage": "./",
   "main": "lib/index.js",
@@ -24,7 +24,7 @@
     "react-scripts": "^3.2.0",
     "react-sortable-tree": "^2.7.1",
     "typescript": "3.5.3",
-    "unofficial-dynamic-content-ui": "file:../unofficial-dynamic-content-ui"
+    "unofficial-dynamic-content-ui": "^0.7.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.1.11",
