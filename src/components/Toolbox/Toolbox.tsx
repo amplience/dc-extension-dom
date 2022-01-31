@@ -13,15 +13,15 @@ import React from "react";
 import { ImmutableTreeData, TreeSpec } from "../../model";
 import ComponentList from "../ComponentList";
 
-const drawerWidth = 200;
+const drawerWidth = 300;
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme: any) =>
   createStyles({
     root: {
       display: "flex"
     },
     appBar: {
-      width: 50,
+      width: 70,
       left: "auto",
       top: "auto",
       right: "auto",
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
     toolbarRoot: {
       minHeight: "47px !important",
       margin: 0,
-      padding: "0 14px"
+      padding: "0 25px"
     },
     appBarShift: {
       marginLeft: drawerWidth,
@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme: Theme) =>
       right: "auto",
       top: "auto",
       width: drawerWidth,
+      height: (props: Props) => props.height || "unset",
       transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen
@@ -69,21 +70,29 @@ const useStyles = makeStyles((theme: Theme) =>
       left: "auto",
       right: "auto",
       top: "auto",
+      height: (props: Props) => props.height || "unset",
       transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen
       }),
       overflowX: "hidden",
-      width: 50
+      width: 70
     },
     toolbar: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "flex-end",
+      justifyContent: "space-between",
       padding: theme.spacing(0, 1),
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
       minHeight: "48px !important"
+    },
+    toolbarLabel: {
+      margin: "0 15px",
+      textTransform: "uppercase",
+      fontSize: "0.75rem",
+      fontFamily: "roboto, sans-serif",
+      color: "rgba(0, 0, 0, 0.54)"
     },
     content: {
       flexGrow: 1,
@@ -105,7 +114,7 @@ export interface Props {
 
 export const Toolbox: React.SFC<Props> = (props: Props) => {
   const { height, ...other } = props;
-  const classes = useStyles();
+  const classes = useStyles(props);
 
   const [open, setOpen] = React.useState(false);
 
@@ -153,12 +162,13 @@ export const Toolbox: React.SFC<Props> = (props: Props) => {
         }}
       >
         <div className={classes.toolbar}>
+          <span className={classes.toolbarLabel}>Components</span>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
         <Divider />
-        <ComponentList height={height} />
+        <ComponentList height={height} open={open} />
         <Divider />
       </Drawer>
     </div>

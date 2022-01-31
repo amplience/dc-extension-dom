@@ -7,7 +7,7 @@ export const styles = {
   root: {
     listStyle: "none",
     /*maxHeight: (props: any) => (props.height ? props.height - 58 : 800),*/
-    overflow: "scroll"
+    overflow: "hidden auto"
   }
 };
 

@@ -22,7 +22,20 @@ const styles = {
     verticalAlign: "middle"
   },
   iconRoot: {
-    minWidth: 40
+    minWidth: 60
+  },
+  label: {
+    fontSize: "0.75rem",
+    fontFamily: "roboto, sans-serif",
+    fontWeight: 400,
+    lineHeight: 1.43,
+    display: "inline !important",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    "white-space": "nowrap"
+    // visibility: (props: any) => props.open ? 'visible' : 'hidden',
+    // display: (props: any) => props.open ? 'block' : 'none',
+    // "white-space": "break-spaces"
   }
 };
 
@@ -30,6 +43,7 @@ interface Props extends WithStyles {
   component: ComponentSpec;
   className?: string;
   small?: boolean;
+  open?: boolean;
   style?: React.CSSProperties;
 }
 
@@ -63,8 +77,10 @@ const ComponentListItem: React.SFC<Props> = props => {
         <ComponentIcon small={small} name={component.name} />
       </ListItemIcon>
       <ListItemText
+        disableTypography={true}
         primary={component.title}
         secondary={component.description}
+        className={classes.label}
       />
       {component.infoLink ? (
         <Link href={component.infoLink} rel="noopener" target="_blank">

@@ -16,13 +16,14 @@ import ComponentListItem from "./ComponentListItem";
 const styles = {
   root: {
     height: (props: any) => props.height,
-    overflow: "hidden scroll"
+    overflow: "hidden auto"
   }
 };
 
 interface Props extends WithStyles {
   className?: string;
   height?: number;
+  open?: boolean;
   style?: React.CSSProperties;
 }
 
@@ -37,12 +38,18 @@ const convertToTree = (data: any) => {
   }, {});
 };
 
-const renderGroup = (treeData: any, treeSpec: any, key: string) => {
+const renderGroup = (
+  treeData: any,
+  treeSpec: any,
+  key: string,
+  open?: boolean
+) => {
   return key !== "root" ? (
-    <TreeItem key={key} nodeId={key} label={key} type={"component"}>
+    <TreeItem key={key} nodeId={key} label={key} open={open} type={"component"}>
       {treeData[key].map((ind: any) => (
         <ComponentListItem
           small={true}
+          open={open}
           key={treeSpec[ind].name}
           component={treeSpec[ind]}
         />
@@ -51,14 +58,18 @@ const renderGroup = (treeData: any, treeSpec: any, key: string) => {
   ) : null;
 };
 
-const renderRootLevel = (treeData: any, treeSpec: any) => {
+const renderRootLevel = (treeData: any, treeSpec: any, open?: boolean) => {
   return (treeData.root || []).map((ind: any) => (
-    <ComponentListItem key={treeSpec[ind].name} component={treeSpec[ind]} />
+    <ComponentListItem
+      open={open}
+      key={treeSpec[ind].name}
+      component={treeSpec[ind]}
+    />
   ));
 };
 
 const ComponentList: React.SFC<Props> = props => {
-  const { classes, height, ...other } = props;
+  const { classes, height, open, ...other } = props;
 
   const treeSpec = useTreeSpec();
 
@@ -78,9 +89,9 @@ const ComponentList: React.SFC<Props> = props => {
         height={height}
       >
         {Object.keys(treeData).map(key =>
-          renderGroup(treeData, treeSpec.components, key)
+          renderGroup(treeData, treeSpec.components, key, open)
         )}
-        {renderRootLevel(treeData, treeSpec.components)}
+        {renderRootLevel(treeData, treeSpec.components, open)}
       </TreeView>
     </List>
   );

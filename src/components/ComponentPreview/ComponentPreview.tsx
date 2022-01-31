@@ -15,7 +15,7 @@ const styles = () => ({
   },
   imageContainer: {
     display: "flex",
-    overflow: "scroll",
+    overflow: "auto",
     padding: 5
   }
 });

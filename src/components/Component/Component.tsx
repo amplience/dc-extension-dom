@@ -41,7 +41,10 @@ export const styles = {
   },
   headerTitle: {
     flex: 1,
-    padding: "8px 0px"
+    padding: "8px 0px",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    "white-space": "nowrap"
   },
   headerIcon: {
     alignItems: "center" as "center",
@@ -164,6 +167,7 @@ export const Component: React.SFC<Props> = (props: Props) => {
         </div>
         <Typography variant="body1" className={classes.headerTitle}>
           {spec.title || spec.name}
+          {text ? ` - ${text}` : ""}
         </Typography>
         <div className={classes.headerActions}>
           {needPreview ? (
