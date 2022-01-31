@@ -30,6 +30,9 @@ export const styles = {
   hovering: {
     background: "#039be5"
   },
+  canDrop: {
+    background: "#7ec0e4"
+  },
   title: {
     padding: "5px 10px",
     borderBottom: "1px solid #e5e5e5"
@@ -109,7 +112,8 @@ const Slot: React.SFC<Props> = (props: Props) => {
   return (
     <div
       className={clsx(classes.root, {
-        [classes.hovering]: isHovering && isCanDrop
+        [classes.hovering]: isHovering && isCanDrop,
+        [classes.canDrop]: !isHovering && isCanDrop
       })}
       ref={drop}
     >

@@ -11,6 +11,9 @@ const styles = () => ({
   },
   hovering: {
     background: "#039be5"
+  },
+  canDrop: {
+    background: "#7ec0e4"
   }
 });
 
@@ -53,7 +56,8 @@ const InsertTarget: React.SFC<Props> = props => {
   return (
     <div
       className={clsx(classes.root, {
-        [classes.hovering]: isHovering && isCanDrop
+        [classes.hovering]: isHovering && isCanDrop,
+        [classes.canDrop]: !isHovering && isCanDrop
       })}
       ref={drop}
     />
