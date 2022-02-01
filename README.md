@@ -37,8 +37,8 @@ If you have registered your extension as detailed above, you then simply need to
     "params": {
       "slots": {},
       "components": []
-		}
-	}
+    }
+  }
 }
 ```
 
@@ -52,8 +52,8 @@ It is also possible to to add an instance of the extension to a content type sch
     "params": {
       "slots": {},
       "components": []
-		}
-	}
+    }
+  }
 }
 ```
 
@@ -176,7 +176,7 @@ Below are some example components which are loosely associated to one-another, t
 }
 ```
 
-##### Grouped omponent with image-link property
+##### Grouped component with image-link property
 
 ```json
 {
