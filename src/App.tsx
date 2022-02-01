@@ -79,10 +79,6 @@ export default class App extends React.Component<{}, AppState> {
   }
 
   public render(): React.ReactElement {
-    if (this.state.sdk) {
-      console.log(getExtensionParams(this.state.sdk.field.schema, {}).pointer);
-    }
-
     return (
       <div className="App">
         <link
