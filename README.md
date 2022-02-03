@@ -269,3 +269,129 @@ Below are some example components which are loosely associated to one-another, t
   }
 }
 ```
+
+### Example Schema
+
+Below is an example schema composed from variations of the slots and components detailed above, which can be used to help you get started with configuring the extension within a new or existing content type schema.
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "...",
+  "title": "DOM Editor",
+  "description": "Example schema using the DOM Editor extension",
+  "allOf": [
+    {
+      "$ref": "http://bigcontent.io/cms/schema/v1/core#/definitions/content"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "layout": {
+      "type": "object",
+      "ui:extension": {
+        "name": "dc-extension-dom-editor",
+        "params": {
+          "height": 1200,
+          "slots": {
+            "header": {
+              "title": "Header",
+              "allow": [
+                "header",
+                "image"
+              ]
+            },
+            "body": {
+              "title": "Body",
+              "allow": [
+                "container"
+              ]
+            }
+          },
+          "components": [
+            {
+              "name": "header",
+              "title": "Header",
+              "icon": "title",
+              "group": "Text Components",
+              "properties": {
+                "headline": {
+                  "title": "Headline",
+                  "description": "A short headline.",
+                  "type": "string"
+                },
+                "headline-size": {
+                  "title": "Headline Size",
+                  "type": "string",
+                  "enum": [
+                    "h1",
+                    "h2",
+                    "h3",
+                    "h4",
+                    "h5",
+                    "h6"
+                  ],
+                  "default": "h1"
+                }
+              },
+              "preview": {
+                "text": "/headline"
+              }
+            },
+            {
+              "name": "paragraph",
+              "title": "Paragraph",
+              "icon": "view_headline",
+              "group": "Text Components",
+              "properties": {
+                "paragraph": {
+                  "title": "Paragraph",
+                  "description": "A paragraph of text.",
+                  "type": "string"
+                },
+                "colour": {
+                  "title": "Text Colour",
+                  "description": "Text colour for this paragraph.",
+                  "type": "string",
+                  "format": "color"
+                }
+              },
+              "preview": {
+                "text": "/paragraph"
+              }
+            },
+            {
+              "name": "container",
+              "title": "Container",
+              "icon": "inventory_2",
+              "slots": {
+                "children": {
+                  "allow": "*"
+                }
+              }
+            },
+            {
+              "name": "image",
+              "title": "Image",
+              "icon": "image",
+              "infoLink": "https://amplience.com/docs/dynamicmedia/dmapireference.html",
+              "properties": {
+                "image": {
+                  "title": "Image",
+                  "description": "A simple Amplience Image-Link",
+                  "allOf": [
+                    {
+                      "$ref": "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "propertyOrder": []
+}
+```

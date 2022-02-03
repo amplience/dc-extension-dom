@@ -57,12 +57,10 @@ A good example remote name is `upstream`.
 
 ### Resetting a branch to match ours
 
-If you're using your fork as a version snapshot of our repository and want to update, then you can easily reset your master branch to match the one in our repo. Checkout _your_ master branch with `git checkout master`, then reset it to the state of ours with `git reset --hard <remote-name>/master`.
+If you're using your fork as a version snapshot of our repository and want to update, then you can easily reset your master branch to match the one in our repo. Checkout _your_ master branch with `git checkout master`, then reset it to the state of ours with `git fetch <remote-name>`, followed by `git reset --hard <remote-name>/master`.
 
 ### Rebasing changes on top of the latest master
 
-If you've made your own changes to the editor, but want to pull in changes that we've made on the master branch or recently released, then you can also rebase your modified branch on top of our master branch. Simply make sure that your remote is configured, and run the following command:
-
-`git rebase <remote-name>/master`
+If you've made your own changes to the editor, but want to pull in changes that we've made on the master branch or recently released, then you can also rebase your modified branch on top of our master branch. Simply make sure that your remote is configured, and run `git fetch <remote-name>`, followed by `git rebase <remote-name>/master`
 
 You may run into merge conflicts along the way if you've changed the same files as the source. If this happens, look at the files listed, resolve the conflicts, and continue with `git rebase --continue` until all of your commits have been applied.
