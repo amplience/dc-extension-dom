@@ -121,7 +121,6 @@ export class ImmutableTreeData {
     index: number = -1
   ): ImmutableTreeData {
     const newValue = this.cloneValue();
-    debugger;
     const parentNode = pointerValue(newValue, parent);
 
     if (!parentNode) {

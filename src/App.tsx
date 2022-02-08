@@ -43,7 +43,7 @@ export default class App extends React.Component<{}, AppState> {
     const {
       params: { installation, instance }
     }: any = sdk;
-    const height = installation.height || instance.height;
+    const height = installation.height || instance.height || 600;
 
     sdk.frame.startAutoResizer();
 
@@ -53,16 +53,20 @@ export default class App extends React.Component<{}, AppState> {
     }
 
     const value: string = await sdk.field.getValue();
-    this.setState({
-      sdk,
-      connected: true,
-      value,
-      schema: {
-        ...sdk.field.schema,
-        height,
-        "ui:widget": "component-tree"
-      }
-    });
+    try {
+      this.setState({
+        sdk,
+        connected: true,
+        value,
+        schema: {
+          ...sdk.field.schema,
+          height,
+          "ui:widget": "component-tree"
+        }
+      });
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   public async handleValueChange(value: string): Promise<void> {

@@ -15,21 +15,37 @@ import ComponentIcon from "../ComponentIcon";
 
 const styles = {
   root: {
-    transform: "translate3d(0, 0, 0)"
+    transform: "translate3d(0, 0, 0)",
+    paddingLeft: (props: any) => (props.small ? 5 : 16)
   },
   info: {
     verticalAlign: "middle"
+  },
+  iconRoot: {
+    minWidth: 60
+  },
+  label: {
+    fontSize: "0.75rem",
+    fontFamily: "roboto, sans-serif",
+    fontWeight: 400,
+    lineHeight: 1.43,
+    display: "inline !important",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    "white-space": "nowrap"
   }
 };
 
 interface Props extends WithStyles {
   component: ComponentSpec;
   className?: string;
+  small?: boolean;
+  open?: boolean;
   style?: React.CSSProperties;
 }
 
 const ComponentListItem: React.SFC<Props> = props => {
-  const { component, classes, ...other } = props;
+  const { component, classes, small, ...other } = props;
 
   const [{ dragging }, drag, preview] = useDrag({
     item: {
@@ -52,13 +68,16 @@ const ComponentListItem: React.SFC<Props> = props => {
       className={clsx(classes.root)}
       button={true}
       ref={drag}
+      title={component.title}
     >
-      <ListItemIcon>
-        <ComponentIcon name={component.name} />
+      <ListItemIcon className={classes.iconRoot}>
+        <ComponentIcon small={small} name={component.name} />
       </ListItemIcon>
       <ListItemText
+        disableTypography={true}
         primary={component.title}
         secondary={component.description}
+        className={classes.label}
       />
       {component.infoLink ? (
         <Link href={component.infoLink} rel="noopener" target="_blank">

@@ -41,7 +41,10 @@ export const styles = {
   },
   headerTitle: {
     flex: 1,
-    padding: "8px 0px"
+    padding: "8px 0px",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    "white-space": "nowrap"
   },
   headerIcon: {
     alignItems: "center" as "center",
@@ -107,7 +110,9 @@ export const Component: React.SFC<Props> = (props: Props) => {
     const images: any[] = [];
     if (node.spec && node.spec.preview && node.spec.preview.image) {
       const value = pointerValue(node.properties, node.spec.preview.image);
-      value && images.push(value);
+      if (value) {
+        images.push(value);
+      }
     } else {
       walkJson(node.properties, value => {
         if (
@@ -162,6 +167,7 @@ export const Component: React.SFC<Props> = (props: Props) => {
         </div>
         <Typography variant="body1" className={classes.headerTitle}>
           {spec.title || spec.name}
+          {text ? ` - ${text}` : ""}
         </Typography>
         <div className={classes.headerActions}>
           {needPreview ? (

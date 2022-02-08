@@ -41,6 +41,11 @@ export const TYPOGRAPHY_SPEC = {
     text: {
       type: "string",
       title: "Text"
+    },
+    color: {
+      type: "string",
+      format: "color",
+      title: "Text"
     }
   },
   slots: {}
@@ -58,7 +63,17 @@ export const IMAGE_SPEC = {
           $ref:
             "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link"
         }
-      ]
+      ],
+      default: {
+        _meta: {
+          schema:
+            "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link"
+        },
+        id: "286e4760-1812-4e3a-81ab-d2e3bf32b9b5",
+        name: "blue-tie",
+        endpoint: "ampproduct",
+        defaultHost: "cdn.media.amplience.net"
+      }
     }
   },
   slots: {}

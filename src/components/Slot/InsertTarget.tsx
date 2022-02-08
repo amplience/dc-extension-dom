@@ -5,11 +5,15 @@ import { useDrop } from "react-dnd";
 
 const styles = () => ({
   root: {
-    width: "100%",
-    height: 8
+    height: 12,
+    border: "1px dashed #e5e5e5",
+    margin: "5px 0"
   },
   hovering: {
     background: "#039be5"
+  },
+  canDrop: {
+    background: "#7ec0e4"
   }
 });
 
@@ -52,7 +56,8 @@ const InsertTarget: React.SFC<Props> = props => {
   return (
     <div
       className={clsx(classes.root, {
-        [classes.hovering]: isHovering && isCanDrop
+        [classes.hovering]: isHovering && isCanDrop,
+        [classes.canDrop]: !isHovering && isCanDrop
       })}
       ref={drop}
     />

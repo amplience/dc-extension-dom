@@ -30,7 +30,7 @@ const styles = (theme: Theme) => ({
   group: {
     margin: 0,
     padding: 0,
-    marginLeft: 26
+    marginLeft: 0
   },
   /* Styles applied to the tree node content. */
   content: {
@@ -48,9 +48,10 @@ const styles = (theme: Theme) => ({
   /* Styles applied to the tree node icon and collapse/expand icon. */
   iconContainer: {
     width: 24,
-    minWidth: 24,
+    minWidth: 53,
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "flex-start",
+    marginLeft: 7
   },
   indent: {
     width: 24
@@ -66,11 +67,21 @@ export interface TreeItemProps
   nodeId?: string;
   label: string;
   type?: string;
+  open?: boolean;
   icon?: React.ReactElement;
 }
 
 const TreeItem: React.SFC<TreeItemProps> = (props: TreeItemProps) => {
-  const { children, classes, nodeId = "", label, type, icon, ...other } = props;
+  const {
+    children,
+    classes,
+    nodeId = "",
+    label,
+    type,
+    icon,
+    open = true,
+    ...other
+  } = props;
 
   const { isExpanded, isSelected, toggle, select } = React.useContext(
     TreeViewContext
@@ -120,6 +131,7 @@ const TreeItem: React.SFC<TreeItemProps> = (props: TreeItemProps) => {
       component={"li"}
       button={true}
       role="treeitem"
+      title={label}
       aria-expanded={expandable ? expanded : undefined}
       {...other}
     >
@@ -136,8 +148,8 @@ const TreeItem: React.SFC<TreeItemProps> = (props: TreeItemProps) => {
         )}
         {icon}
         <ListItemText
-          primary={label}
-          onClick={type === "component" ? handleClickIcon : () => {}}
+          primary={open ? label : ""}
+          onClick={type === "component" ? handleClickIcon : () => ""}
         />
       </div>
       {children && (

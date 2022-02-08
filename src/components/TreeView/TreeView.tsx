@@ -6,8 +6,8 @@ import TreeViewContext from "./TreeViewContext";
 export const styles = {
   root: {
     listStyle: "none",
-    maxHeight: (props: any) => (props.height ? props.height - 58 : 400),
-    overflow: "scroll"
+    /*maxHeight: (props: any) => (props.height ? props.height - 58 : 800),*/
+    overflow: "hidden auto"
   }
 };
 

@@ -21,7 +21,7 @@ storiesOf("Toolbox", module).add("Default", () =>
     <WithTreeSpecExtended value={spec}>
       <div style={styles.root}>
         <div style={styles.toolboxPane}>
-          <Toolbox data={data} />
+          <Toolbox data={data} height={300} />
         </div>
       </div>
     </WithTreeSpecExtended>
