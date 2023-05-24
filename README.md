@@ -4,6 +4,8 @@
 
 The DOM Editor extension allows content authors to create and edit a hierarchy of components to structure their content in an abstract manner, for use in a Document Object Model.
 
+This project requires Node 16.x to build.
+
 ## How to install
 
 This extension can optionally be [registered](https://amplience.com/docs/development/registeringextensions.html) against a Hub with in the Dynamic Content application (Developer -> Extensions), to allow it to load within that Hub.
